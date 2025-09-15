@@ -1,0 +1,15 @@
+@startuml
+start
+:User Login;
+:Select Trade Type;
+:Enter Trade Details;
+:Validate Order;
+if (Validation Success?) then (yes)
+  :Execute Trade;
+  :Update Portfolio;
+  :Send Confirmation;
+else (no)
+  :Show Error;
+endif
+stop
+@enduml
