@@ -1,0 +1,45 @@
++-----------------------+
+|   TradestoreApplication (main)  |
++-----------------------+
+
++-----------------------+
+|      Trade            |
++-----------------------+
+| - tradeId: String     |
+| - version: int        |
+| - counterPartyId: String|
+| - bookId: String      |
+| - maturityDate: LocalDate|
+| - createdDate: LocalDate|
+| - expired: boolean    |
++-----------------------+
+
++-----------------------+
+| TradeRepository       |
++-----------------------+
+| + existsByTradeIdAndVersion(tradeId, version): boolean |
+| + findByTradeId(tradeId): Trade                       |
++-----------------------+
+
++-----------------------+
+| TradeService          |
++-----------------------+
+| - tradeRepository     |
+| + saveTrade(trade): void       |
+| + markExpiredTrades(): void    |
+| + validateTrade(trade): void   |
++-----------------------+
+
++-----------------------+
+| TradeController       |
++-----------------------+
+| - tradeService        |
+| + submitTrade(trade): ResponseEntity<String> |
++-----------------------+
+
++-----------------------+
+| TradeConsumer         |
++-----------------------+
+| - tradeService        |
+| + consumeTrade(trade): void  |
++-----------------------+
