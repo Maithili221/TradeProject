@@ -1,0 +1,26 @@
+@startuml
+actor User
+participant "TradeController" as Controller
+participant "TradeService" as Service
+participant "OrderRepository" as Repository
+database "Database" as DB
+
+User -> Controller: Initiate Trade (trade details)
+Controller -> Service: validateTrade(trade details)
+Service -> Repository: saveOrder(order details)
+Repository -> DB: INSERT order
+DB --> Repository: Success/Failure
+Repository --> Service: Order Saved
+Service -> Controller: Trade Confirmation/Failure
+Controller -> User: Display confirmation/status
+
+User -> Controller: View Trade History
+Controller -> Service: getTradeHistory(userId)
+Service -> Repository: fetchOrders(userId)
+Repository -> DB: SELECT orders WHERE userId=?
+DB --> Repository: Orders List
+Repository --> Service: Orders List
+Service -> Controller: History Data
+Controller -> User: Show Trade History
+
+@enduml
